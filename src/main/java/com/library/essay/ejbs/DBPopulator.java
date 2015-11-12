@@ -12,7 +12,13 @@ import java.util.logging.Logger;
 
 @Singleton
 @Startup
-@DataSourceDefinition(name = "java:global/jdbc/essayLibrary", className = "org.apache.derby.jdbc.EmbeddedDriver", url = "jdbc:derby:memory:lab11DB;create=true;user=app;password=app")
+
+// H2 Database, need to add the driver jar under
+// glassfish/domains/domain1/lib/ext
+@DataSourceDefinition(name = "java:global/jdbc/essayLibrary", className = "org.h2.jdbcx.JdbcDataSource", url = "jdbc:h2:~/data/java-ee-essay")
+
+// Derby Database
+//@DataSourceDefinition(name = "java:global/jdbc/essayLibrary", className = "org.apache.derby.jdbc.EmbeddedDriver", url = "jdbc:derby:memory:lab11DB;create=true;user=app;password=app")
 public class DBPopulator {
 
 	@Inject
@@ -22,16 +28,16 @@ public class DBPopulator {
 
 	@PostConstruct
 	private void createDummyData() {
-		essayEJB.saveEssay(new Essay("Java EE Tutorial 1", "Oracle",
-				"Java EE is cool!"));
-		essayEJB.saveEssay(new Essay("Java EE Tutorial 2", "Oracle",
-				"Java EE is cool!"));
-		essayEJB.saveEssay(new Essay("Java EE Tutorial 3", "Oracle",
-				"Java EE is cool!"));
-		essayEJB.saveEssay(new Essay("Java EE Tutorial 4", "Oracle",
-				"Java EE is cool!"));
 
-		logger.info("&&&&&&&&&&&&&& Inserted "
-				+ essayEJB.findAllEssays().size() + " Essays");
+		int size = essayEJB.findAllEssays().size();
+
+		if (size == 0) {
+			essayEJB.saveEssay(new Essay("Java EE Tutorial 1", "Oracle", "Java EE is cool!"));
+			essayEJB.saveEssay(new Essay("Java EE Tutorial 2", "Oracle", "Java EE is cool!"));
+			essayEJB.saveEssay(new Essay("Java EE Tutorial 3", "Oracle", "Java EE is cool!"));
+			essayEJB.saveEssay(new Essay("Java EE Tutorial 4", "Oracle", "Java EE is cool!"));
+
+			logger.info("&&&&&&&&&&&&&& Inserted " + essayEJB.findAllEssays().size() + " Essays");
+		}
 	}
 }
