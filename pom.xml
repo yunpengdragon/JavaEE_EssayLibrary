@@ -44,8 +44,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
 
-	<!-- This has most of the needed dependencies : Derby, JPA, EJB, Java EE 
-		6... -->
+	<!-- This has most of the needed dependencies : Derby, JPA, EJB, Java EE  -->
 	<dependencies>
 		<dependency>
 			<groupId>org.glassfish.main.extras</groupId>
@@ -60,13 +59,7 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- CDI 
-		<dependency>
-			<groupId>org.jboss.weld.se</groupId>
-			<artifactId>weld-se</artifactId>
-			<version>${version.weld}</version>
-		</dependency>
-		-->
+		
 		<!-- Bean Validation -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -74,13 +67,7 @@
 			<version>${version.hibernate.validator}</version>
 		</dependency>
 
-		<!-- EL 
-		<dependency>
-			<groupId>org.glassfish</groupId>
-			<artifactId>javax.el</artifactId>
-			<version>${version.el}</version>
-		</dependency>
-		-->
+		
 		<!-- PrimeFaces  -->
 		<dependency>  
     		<groupId>org.primefaces</groupId>  
@@ -95,102 +82,7 @@
 		    <version>1.0.10</version>  
 		</dependency>
 
-		<!-- JPA 
-		<dependency>
-			<groupId>org.eclipse.persistence</groupId>
-			<artifactId>org.eclipse.persistence.jpa</artifactId>
-			<version>${version.eclipselink}</version>
-		</dependency>
-		-->
-		<!--  
-		<dependency>
-			<groupId>org.eclipse.persistence</groupId>
-			<artifactId>org.eclipse.persistence.jpa.modelgen</artifactId>
-			<version>${version.eclipselink}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.persistence</groupId>
-			<artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
-			<version>${version.eclipselink}</version>
-		</dependency>
-		-->
-		<!-- Derby 
-		<dependency>
-			<groupId>org.apache.derby</groupId>
-			<artifactId>derby</artifactId>
-			<version>${version.derby}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.derby</groupId>
-			<artifactId>derbyclient</artifactId>
-			<version>${version.derby}</version>
-		</dependency>
-		-->
-		<!-- H2 
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<version>1.4.190</version>
-		</dependency>
-		-->
-		<!-- MySQL 
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>${version.mysql}</version>
-		</dependency>
-		-->
 		
-		<!-- JSOn-P -->
-		<dependency>
-			<groupId>org.glassfish</groupId>
-			<artifactId>javax.json</artifactId>
-			<version>${version.json}</version>
-		</dependency>
-
-		<!-- Jersey 
-		<dependency>
-			<groupId>org.glassfish.jersey.core</groupId>
-			<artifactId>jersey-common</artifactId>
-			<version>${version.jersey}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.glassfish.jersey.core</groupId>
-			<artifactId>jersey-server</artifactId>
-			<version>${version.jersey}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.glassfish.jersey.core</groupId>
-			<artifactId>jersey-client</artifactId>
-			<version>${version.jersey}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.glassfish.jersey.containers</groupId>
-			<artifactId>jersey-container-grizzly2-http</artifactId>
-			<version>${version.jersey}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.glassfish.jersey.containers</groupId>
-			<artifactId>jersey-container-jdk-http</artifactId>
-			<version>${version.jersey}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.glassfish.jersey.containers</groupId>
-			<artifactId>jersey-container-servlet</artifactId>
-			<version>${version.jersey}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.glassfish.jersey.containers</groupId>
-			<artifactId>jersey-container-servlet-core</artifactId>
-			<version>${version.jersey}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.persistence</groupId>
-			<artifactId>org.eclipse.persistence.moxy</artifactId>
-			<version>2.4.1</version>
-		</dependency>
-		-->
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -236,6 +128,14 @@
 			      </configuration>
 			    </execution>
 			  </executions>
+			  <dependencies>
+			  	<!-- add h2 support in embedded glassfish -->
+			  	<dependency>
+					<groupId>com.h2database</groupId>
+					<artifactId>h2</artifactId>
+					<version>1.4.190</version>
+				</dependency>
+			  </dependencies>
 			</plugin>
 		
 			<plugin>
