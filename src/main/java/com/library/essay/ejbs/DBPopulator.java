@@ -15,10 +15,10 @@ import java.util.logging.Logger;
 
 // H2 Database, need to add the driver jar under
 // glassfish/domains/domain1/lib/ext
-@DataSourceDefinition(name = "java:global/jdbc/essayLibrary", className = "org.h2.jdbcx.JdbcDataSource", url = "jdbc:h2:~/data/java-ee-essay")
+//@DataSourceDefinition(name = "java:global/jdbc/essayLibrary", className = "org.h2.jdbcx.JdbcDataSource", url = "jdbc:h2:~/data/java-ee-essay")
 
 // Derby Database
-//@DataSourceDefinition(name = "java:global/jdbc/essayLibrary", className = "org.apache.derby.jdbc.EmbeddedDriver", url = "jdbc:derby:memory:lab11DB;create=true;user=app;password=app")
+@DataSourceDefinition(name = "java:global/jdbc/essayLibrary", className = "org.apache.derby.jdbc.EmbeddedDriver", url = "jdbc:derby:memory:lab11DB;create=true;user=app;password=app")
 public class DBPopulator {
 
 	@Inject
