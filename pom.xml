@@ -105,7 +105,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>JavaEE_EssayLibrary</finalName>
+		<finalName>${project.artifactId}</finalName>
 		<plugins>
 		
 			<!-- Embedded Glassfish -->
@@ -115,6 +115,10 @@
 			  <version>${version.glassfish}</version>
 			  <configuration>
 			    <port>8282</port>
+			    <glassfishProperties>
+			    	<!-- Specify where the embedded glassfish server should be installed.  -->
+	        		<glassfishProperty>glassfish.embedded.tmpdir=target/embedded-glassfish</glassfishProperty>
+	        	</glassfishProperties>
 			  </configuration>
 			  <executions>
 			    <execution>
