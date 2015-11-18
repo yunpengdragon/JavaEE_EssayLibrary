@@ -17,7 +17,8 @@
 		<version.hibernate.validator>5.0.1.Final</version.hibernate.validator>
 		<version.el>3.0-b07</version.el>
 		<version.json>1.0-b05</version.json>
-		<primefaces.version>5.1</primefaces.version>
+		<primefaces.version>5.3</primefaces.version>
+		<jasperreport.version>5.5.1</jasperreport.version>
 		<json.version>20090211</json.version>
 		<!-- <lucene.version>4.2.1</lucene.version> <lucene.spellchecker.version>3.6.2</lucene.spellchecker.version> -->
 		<jazzy.version>0.5.2-rtext-1.4.1-2</jazzy.version>
@@ -120,6 +121,13 @@
 			<groupId>org.dts</groupId>
 			<artifactId>jmyspell-core</artifactId>
 			<version>${jmyspell-core.version}</version>
+		</dependency>
+		
+		<!-- Jasperreports -->
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>${jasperreport.version}</version>
 		</dependency>
 		
 		<!-- Test -->
