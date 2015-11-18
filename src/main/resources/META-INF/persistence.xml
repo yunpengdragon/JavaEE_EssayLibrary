@@ -8,7 +8,8 @@
     <jta-data-source>java:global/jdbc/essayLibrary</jta-data-source>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
-      <property name="eclipselink.logging.level" value="INFO"/>
+      <property name="eclipselink.logging.level" value="FINE"/>
+      <property name="eclipselink.logging.level.sql" value="FINE"/>
     </properties>
   </persistence-unit>
 </persistence>

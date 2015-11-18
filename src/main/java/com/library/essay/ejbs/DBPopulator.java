@@ -1,15 +1,19 @@
 package com.library.essay.ejbs;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.sql.DataSourceDefinition;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
 
+import org.apache.log4j.Logger;
+
 import com.library.essay.persistence.entities.Essay;
 import com.library.essay.services.EssayService;
 
-import java.util.logging.Logger;
+//import java.util.logging.Logger;
 
 @Singleton
 @Startup
@@ -19,18 +23,21 @@ import java.util.logging.Logger;
 @DataSourceDefinition(name = "java:global/jdbc/essayLibrary", className = "org.h2.jdbcx.JdbcDataSource", url = "jdbc:h2:~/data/java-ee-essay2")
 
 // Derby Database
-//@DataSourceDefinition(name = "java:global/jdbc/essayLibrary", className = "org.apache.derby.jdbc.EmbeddedDriver", url = "jdbc:derby:memory:lab11DB;create=true;user=app;password=app")
+// @DataSourceDefinition(name = "java:global/jdbc/essayLibrary", className =
+// "org.apache.derby.jdbc.EmbeddedDriver", url =
+// "jdbc:derby:memory:lab11DB;create=true;user=app;password=app")
 public class DBPopulator {
 
 	@Inject
 	private EssayService essayService;
 
-	private Logger logger = Logger.getLogger("com.library.essay");
+	private Logger logger = Logger.getLogger(getClass());
 
 	@PostConstruct
 	private void createDummyData() {
 
-		int size = essayService.getEssays().size();
+		List<Essay> essays = essayService.getEssays();
+		int size = essays.size();
 
 		if (size == 0) {
 			essayService.saveOrUpdate(new Essay("Java EE Tutorial 1", "Oracle", "Java EE is cool!"));
@@ -40,5 +47,11 @@ public class DBPopulator {
 
 			logger.info("&&&&&&&&&&&&&& Inserted " + essayService.getEssays().size() + " Essays");
 		}
+
+		logger.info("=====================================================");
+		for (Essay essay : essays) {
+			logger.info(essay);
+		}
+		logger.info("=====================================================");
 	}
 }
