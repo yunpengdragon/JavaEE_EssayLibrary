@@ -9,7 +9,7 @@ import com.library.essay.persistence.entities.Essay;
 
 public class EssayServiceImp implements EssayService {
 
-	//@EJB
+	@EJB
 	private EssayEJB essayEJB;
 
 	@Override
