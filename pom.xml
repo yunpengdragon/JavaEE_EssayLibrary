@@ -47,6 +47,19 @@
 		<!-- Project -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		
+		<!-- Cargo Plugin -->
+		<!-- Glassfish -->
+		<integration.container.id>glassfish4x</integration.container.id>
+        <server.home>${basedir}/target/cargo/installs/glassfish</server.home>
+        <cargo.maven.containerUrl>http://download.oracle.com/glassfish/4.1.1/release/glassfish-4.1.1.zip</cargo.maven.containerUrl>
+        
+        
+        <!-- Wildfly 
+        <integration.container.id>wildfly9x</integration.container.id>
+        <server.home>${basedir}/target/cargo/installs/wildfly</server.home>
+        <cargo.maven.containerUrl>http://download.jboss.org/wildfly/9.0.2.Final/wildfly-9.0.2.Final.zip</cargo.maven.containerUrl>
+        -->
 	</properties>
 
 	<!-- This has most of the needed dependencies : Derby, JPA, EJB, Java EE  -->
@@ -64,6 +77,13 @@
 			<scope>provided</scope>
 		</dependency>
 
+		
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derbyclient</artifactId>
+			<version>${version.derby}</version>
+			<scope>provided</scope>
+		</dependency>
 		
 		<!-- Bean Validation -->
 		<dependency>
@@ -190,6 +210,31 @@
 			  </dependencies>
 			</plugin>
 		
+			<!-- Cargo -->
+			 <plugin>
+                <groupId>org.codehaus.cargo</groupId>
+                <artifactId>cargo-maven2-plugin</artifactId>
+                <version>1.4.16</version>
+                <inherited>true</inherited>
+                <configuration>
+                
+                    <container>
+                        <containerId>${integration.container.id}</containerId>
+                        <type>installed</type>
+                        <home>${server.home}</home>
+                    </container>
+                    <containerUrl>${cargo.maven.containerUrl}</containerUrl>
+                    
+                    <configuration>
+                        <type>standalone</type>
+                        <home>${server.home}/glassfish/domains</home>     
+                        <properties>
+            				<cargo.servlet.port>9090</cargo.servlet.port>
+          				</properties>              
+                    </configuration>
+                </configuration>
+            </plugin>
+            
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
